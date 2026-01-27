@@ -16,4 +16,5 @@ def hello_pandas():
     print(df)
 
 # Call the function to demonstrate pandas usage
-hello_pandas()
+if __name__ == "__main__":
+    hello_pandas()
