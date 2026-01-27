@@ -24,4 +24,5 @@ def FizzBuzz():
             print(i)
     
 # Call the FizzBuzz function to execute the logic
-FizzBuzz()
+if __name__ == "__main__":
+    FizzBuzz()
