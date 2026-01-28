@@ -1,0 +1,22 @@
+<!-- Purpose: Shared layout (nav, CSS, etc.) to avoid duplication -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Tasks & Tags{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+        <!-- These routes are handled by main.py HTML routes -->
+        <a href="/">Home</a>
+        <a href="/tasks">Tasks</a>
+        <a href="/tags">Tags</a>
+    </nav>
+    <main>
+        <!-- Child templates inject their page-specif HTML here -->
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

@@ -1,0 +1,47 @@
+# Purpose: Define and run multi-container application (backend with FastAPI and PostgreSQL database).
+# Start point: docker-compose up --build
+# End state: Containers are built, networked, and running.
+
+version: "3.9"
+
+services:
+  backend:
+    # Build the backend service from the Dockerfile in the ./app directory
+    build: ./app
+    container_name: tasks_backend
+    # Load environment variables from .env file
+    env_file:
+      - .env
+    # Ensure the backend starts after the database is ready
+    depends_on:
+      - db
+    # Map port 8000 of the container to port 8000 on the host
+    ports:
+      - "8000:8000"
+    # Mount the local ./app directory to /app in the container for code changes
+    volumes:
+      - ./app:/app
+    # Command to run the FastAPI application with Uvicorn
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+  db:
+    image: postgres:16-alpine
+    container_name: tasks_db
+
+    # Env vars tell Postgres how to set up the DB/user/password to use
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+
+    # Optional: Map port 5432 of the container to port 5432 on the host
+    ports:
+      - "5432:5432"
+
+    # Persist Postgres data on the host machine by naming a volume
+    volumes:
+      - pgdata_tasks:/var/lib/postgresql/data
+
+# Definition of named volumes for data persistence
+volumes:
+  pgdata_tasks:

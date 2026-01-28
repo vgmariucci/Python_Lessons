@@ -1,0 +1,61 @@
+<!-- 
+ Purpose: Lists tasks and show example JSON payloads to create tasks via API 
+ 
+ Flow:
+    - Called by tasks_page() in main.py when user visits /tasks in browser.
+    - Receives tasks and tags lists from the context.
+-->
+{% extends "base.html" %}
+
+{% block title %}Tasks{% endblock %}
+
+{% block content %}
+<h1>Tasks</h1>
+
+<h2>All Tasks</h2>
+
+{% if tasks %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Due Date</th>
+            <th>Tags</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.id }}</td>
+            <td>{{ task.title }}</td>
+            <td>{{ task.description }}</td>
+            <td>{{ task.status.value }}</td>
+            <td>{{ task.due_date or "N/A" }}</td>
+            <td>
+                {% for tag in task.tags %}
+                    <span class="tag">{{ tag.name }}</span>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No tasks yet. Use the API to create some!</p>
+{% endif %}
+
+<h2>Create a Task (via API)</h2>
+<p>Use <code>POST /api/tasks</code> with JSON body:</p>
+<pre>
+{
+  "title": "My Task",
+  "description": "Task description",
+  "status": "pending",
+  "due_date": "2025-12-31T23:59:59",
+  "tag_ids": [1, 2]
+}
+</pre>
+{% endblock %}

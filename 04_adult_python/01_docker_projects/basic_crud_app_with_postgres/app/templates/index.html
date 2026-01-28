@@ -1,0 +1,25 @@
+<!-- Purpose: Simple homepage describing the application and listing API endpoints -->
+{% extends "base.html" %}
+
+{% block title %}Home - Tasks & Tags{% endblock %}
+
+{% block content %}
+<h1>Welcome to Tasks & Tags CRUD App</h1>
+<p>Manage your tasks and organize them with tags.</p>
+
+<ul>
+    <li><a href="/tasks">View Tasks</a></li>
+    <li><a href="/tags">View Tags</a></li>
+</ul>
+
+<h2>API Endpoints</h2>
+<ul>
+    <li><code>GET /api/tasks</code> - List all tasks</li>
+    <li><code>POST /api/tasks</code> - Create a task</li>
+    <li><code>GET /api/tasks/{id}</code> - Get a task</li>
+    <li><code>PUT /api/tasks/{id}</code> - Update a task</li>
+    <li><code>DELETE /api/tasks/{id}</code> - Delete a task</li>
+    <li><code>GET /api/tags</code> - List all tags</li>
+    <li><code>POST /api/tags</code> - Create a tag</li>
+</ul>
+{% endblock %}
