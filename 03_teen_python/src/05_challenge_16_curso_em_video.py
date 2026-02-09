@@ -1,6 +1,15 @@
+# Import necessary components from the Rich library
 '''
-A class to represent a collaborator of a comphany
+ To list all the availabe emojis for rich library, run the following command in terminal:
+ 
+ python -m rich.emoji
 '''
+from rich.text import Text
+from rich import print
+from rich.console import Console
+from rich.panel import Panel
+from rich.table import Table
+
 class Collaborator:
     '''
     Creates the collaborator with basic attributes and methods
@@ -14,7 +23,7 @@ class Collaborator:
     
     def PresentYourSelf(self):
     
-        return print(f"Hi, my name is {self.name}. I'm the {self.position} at the {self.department} department at {self.company}")
+        return print(f":handshake: Hi, my name is [blue]{self.name}[/blue]. I'm the {self.position} at the {self.department} department at {self.company}")
 
 c1 = Collaborator(name = "Maria", department = "Marketing", position = "Analyst")
 

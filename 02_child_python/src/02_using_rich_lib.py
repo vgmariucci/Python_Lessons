@@ -3,6 +3,11 @@ This module demonstrates the use of the Rich library to create
 a styled console output in Python.
 
 rich library documentation: https://rich.readthedocs.io/en/stable/
+
+To list all the availabe emojis for rich library, run the following command in terminal:
+ 
+python -m rich.emoji
+
 '''
 
 # Import necessary components from the Rich library

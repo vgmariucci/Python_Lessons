@@ -1,3 +1,8 @@
+'''
+ To list all the availabe emojis for rich library, run the following command in terminal:
+ 
+ python -m rich.emoji
+'''
 # Import necessary components from the Rich library
 from rich.text import Text
 from rich import print
