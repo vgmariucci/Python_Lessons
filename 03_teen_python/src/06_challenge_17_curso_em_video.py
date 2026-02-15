@@ -8,11 +8,11 @@ from rich.text import Text
 from rich import print
 from rich.console import Console
 from rich.panel import Panel
-from rich.table import Table
+
 
 class ProductTag:
     '''
-    A class to represent a price tag for products
+    A class to represent a product tag
     '''
     def __init__(self, product_name, price):
         
@@ -20,9 +20,16 @@ class ProductTag:
         self.price = price
     
     def print_product_tag(self):
-        return print(f"Product name: {self.name}\nPrice: R$ {self.price:,.2f}")
+        return print(
+                    Panel(
+                          Text(f"{self.name}\n----------\nR${self.price:,.2f}",justify = "center"), 
+                        title_align = "center",
+                        title = "Product"
+                        )
+                    )
     
 
 
 p1 = ProductTag(product_name = "Pen", price = 3.5)
 p1.print_product_tag()
+
